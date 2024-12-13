@@ -52,7 +52,7 @@ const handleCreatePlaylist = async () => {
     const accessToken = localStorage.getItem('access_token');
     const refreshToken = localStorage.getItem('refresh_token');
 
-    const response = await fetch(`//${import.meta.env.VITE_API_URL}/playlist`, {
+    const response = await fetch(`//${apiUrl}/playlist`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${accessToken} ${refreshToken}`,
