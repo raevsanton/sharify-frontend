@@ -10,10 +10,14 @@ const loginBlock = document.getElementById('loginBlock');
 const loader = document.getElementById('loader');
 const errorBlock = document.getElementById('errorBlock');
 
+const apiUrl = import.meta.env.VITE_API_URL;
+const clientUrl = import.meta.env.VITE_CLIENT_URL;
+const spotifyClientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+
 let playlistID = null;
 
 const getTokens = async (code) => {
-  const response = await fetch(`//${import.meta.env.VITE_API_URL}/auth?code=${code}`);
+  const response = await fetch(`//${apiUrl}/auth?code=${code}`);
   const { access_token, refresh_token } = await response.json();
   localStorage.setItem('access_token', access_token);
   localStorage.setItem('refresh_token', refresh_token);
@@ -21,9 +25,9 @@ const getTokens = async (code) => {
 
 const handleLogin = () => {
   const params = new URLSearchParams({
-    client_id: import.meta.env.VITE_SPOTIFY_CLIENT_ID,
+    client_id: spotifyClientId,
     response_type: "code",
-    redirect_uri: encodeURI(import.meta.env.VITE_CLIENT_URL),
+    redirect_uri: encodeURI(clientUrl),
     show_dialog: "true",
     scope: [
       "user-library-read",
@@ -45,11 +49,13 @@ const handleCreatePlaylist = async () => {
     const playlistName = playlistNameInput.value;
     const playlistDescription = playlistDescriptionInput.value;
     const isPlaylistPublic = playlistPublicCheckbox.checked;
+    const accessToken = localStorage.getItem('access_token');
+    const refreshToken = localStorage.getItem('refresh_token');
 
     const response = await fetch(`//${import.meta.env.VITE_API_URL}/playlist`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('access_token')} ${localStorage.getItem('refresh_token')}`,
+        'Authorization': `Bearer ${accessToken} ${refreshToken}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
