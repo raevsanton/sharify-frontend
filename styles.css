@@ -6,9 +6,9 @@
 }
 
 @font-face {
-  font-family: 'SpotifyMixUI-Bold';
+  font-family: 'SpotifyMixUI';
   src: url('assets/fonts/SpotifyMixUI-Bold.woff2') format('woff2');
-  font-weight: normal;
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -25,13 +25,13 @@ html, body {
 }
 
 h1 {
-  font-family: SpotifyMixUI-Bold, sans-serif;
+  font-weight: 700;
   font-size: 3rem;
   margin: 0;
 }
 
 h2 {
-  font-family: SpotifyMixUI-Bold, sans-serif;
+  font-weight: 700;
   margin: 0;
 }
 
@@ -74,7 +74,7 @@ button {
   background-color: #1DB954;
   color: #000;
   font-size: 16px;
-  font-family: SpotifyMixUI-Bold, sans-serif;
+  font-weight: 700;
   text-align: center;
   text-decoration: none;
   padding: 15px 24px;
