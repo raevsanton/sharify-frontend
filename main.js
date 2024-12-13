@@ -14,20 +14,28 @@ let playlistID = null;
 
 const getTokens = async (code) => {
   const response = await fetch(`//${import.meta.env.VITE_API_URL}/auth?code=${code}`);
-  const { access_token, refresh_token } = await response.json();xw
+  const { access_token, refresh_token } = await response.json();
   localStorage.setItem('access_token', access_token);
   localStorage.setItem('refresh_token', refresh_token);
 }
 
 const handleLogin = () => {
-  let url = '//accounts.spotify.com/authorize';
-  url += "?client_id=" + import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-  url += "&response_type=code";
-  url += "&redirect_uri=" + encodeURI(import.meta.env.VITE_CLIENT_URL);
-  url += "&show_dialog=true";
-  url += "&scope=user-library-read user-read-private user-read-email playlist-modify-public playlist-modify-private";
-  window.location.href = url;
-}
+  const params = new URLSearchParams({
+    client_id: import.meta.env.VITE_SPOTIFY_CLIENT_ID,
+    response_type: "code",
+    redirect_uri: encodeURI(import.meta.env.VITE_CLIENT_URL),
+    show_dialog: "true",
+    scope: [
+      "user-library-read",
+      "user-read-private",
+      "user-read-email",
+      "playlist-modify-public",
+      "playlist-modify-private"
+    ].join(" ")
+  });
+
+  window.location.href = `//accounts.spotify.com/authorize?${params.toString()}`;
+};
 
 const handleCreatePlaylist = async () => {
   loader.style.display = 'block';
