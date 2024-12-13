@@ -10,7 +10,7 @@
   <body>
     <main>
       <div class="content">
-        <img id="logo" src="assets/img/logo.svg" width="70" />
+        <img id="logo" src="assets/img/logo.svg" />
         <h1>Sharify</h1>
         <p>Allows to create playlist with your liked tracks in the Spotify</p>
         <div id="loginBlock">
@@ -20,22 +20,20 @@
 
         <div id="playlistCreatingForm">
           <h2>Playlist data</h2>
-          <input type="text" placeholder="Add a name" id="playlistName"/>
-          <br />
-          <br />
-          <input type="text" placeholder="Add a description" id="playlistDescription"/>
-          <br />
-          <br />
-          <input id="playlistPublic" type="checkbox" />
-          <label for="playlistPublic">Make public</label>
-          <br />
-          <br />
+          <input type="text" placeholder="Name" id="playlistName"/>
+          <input type="text" placeholder="Description" id="playlistDescription"/>
+          <div>
+            <input id="playlistPublic" type="checkbox" />
+            <label for="playlistPublic">Make public</label>
+          </div>
           <button id="createPlaylist">Create</button>
         </div>
 
         <div id="playlistUpdate">
           <h2>Successfully</h2>
-          <button id="openPlaylistButton">Open<img src="assets/img/open.svg" width="20"/></button>
+          <button id="openPlaylistButton">
+            Open<img id="openIcon" src="assets/img/open.svg" />
+          </button>
         </div>
 
         <div id="loader">

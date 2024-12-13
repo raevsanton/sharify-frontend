@@ -46,6 +46,7 @@ h2 {
 }
 
 #logo {
+  width: 70px;
   margin: 0 auto;
 }
 
@@ -105,12 +106,12 @@ button {
 
 .secondary {
   color: #fff;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
   border: 1px solid #787878;
 
   &:hover {
     border: 1px solid #fff;
-    background-color: #000;
+    background-color: transparent;
     transform: scale(1.05);
   }
 }
@@ -122,7 +123,12 @@ button {
 
 #playlistCreatingForm {
   display: none;
+  flex-direction: column;
   margin-top: 15px;
+
+  input {
+    margin-bottom: 30px;
+  }
 }
 
 #playlistUpdate {
@@ -167,13 +173,13 @@ input {
   width: 70px;
   height: 70px;
 
-  > div {
+  .bounce1, .bounce2, .bounce3 {
     width: 18px;
     height: 18px;
     background-color: #dfdfdf;
     border-radius: 100%;
     display: inline-block;
-    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: bounceScaling 1.4s infinite ease-in-out both;
 
     &.bounce1 {
       animation-delay: -0.32s;
@@ -185,7 +191,7 @@ input {
   }
 }
 
-@keyframes sk-bouncedelay {
+@keyframes bounceScaling {
   0%, 80%, 100% {
     transform: scale(0);
   }
@@ -208,4 +214,8 @@ input {
 
 #tryAgainButton {
   margin: 25px auto;
+}
+
+#openIcon {
+  width: 20px;
 }
