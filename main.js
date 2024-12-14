@@ -37,7 +37,7 @@
     const params = new URLSearchParams({
       client_id: spotifyClientId,
       response_type: "code",
-      redirect_uri: encodeURI(clientUrl),
+      redirect_uri: clientUrl,
       show_dialog: "true",
       scope: [
         "user-library-read",
