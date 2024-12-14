@@ -22,7 +22,7 @@
     playlistCreatingForm.style.display = 'none';
 
     try {
-      const response = await fetch(`//${apiUrl}/auth?code=${code}`);
+      const response = await fetch(`${apiUrl}/auth?code=${code}`);
       const { access_token, refresh_token } = await response.json();
       localStorage.setItem('access_token', access_token);
       localStorage.setItem('refresh_token', refresh_token);
@@ -37,7 +37,7 @@
     const params = new URLSearchParams({
       client_id: spotifyClientId,
       response_type: "code",
-      redirect_uri: clientUrl,
+      redirect_uri: encodeURI(clientUrl),
       show_dialog: "true",
       scope: [
         "user-library-read",
@@ -62,7 +62,7 @@
       const accessToken = localStorage.getItem('access_token');
       const refreshToken = localStorage.getItem('refresh_token');
 
-      const response = await fetch(`//${apiUrl}/playlist`, {
+      const response = await fetch(`${apiUrl}/playlist`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${accessToken} ${refreshToken}`,
