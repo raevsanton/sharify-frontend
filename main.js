@@ -22,7 +22,13 @@
     playlistCreatingForm.style.display = 'none';
 
     try {
-      const response = await fetch(`${apiUrl}/auth?code=${code}`);
+      const response = await fetch(`${apiUrl}/auth`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ code }),
+      });
       const { access_token, refresh_token } = await response.json();
       localStorage.setItem('access_token', access_token);
       localStorage.setItem('refresh_token', refresh_token);
