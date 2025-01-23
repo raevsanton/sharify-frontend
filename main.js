@@ -24,14 +24,17 @@
     try {
       const response = await fetch(`${apiUrl}/auth`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ code }),
       });
-      const { access_token, refresh_token } = await response.json();
-      localStorage.setItem('access_token', access_token);
-      localStorage.setItem('refresh_token', refresh_token);
+
+      if (response.status === 200) {
+        loginBlock.style.display = 'none';
+        playlistCreatingForm.style.display = 'flex';
+      }
     } catch {
       errorBlock.style.display = 'block';
     } finally {
@@ -65,13 +68,11 @@
       const playlistName = playlistNameInput.value;
       const playlistDescription = playlistDescriptionInput.value;
       const isPlaylistPublic = playlistPublicCheckbox.checked;
-      const accessToken = localStorage.getItem('access_token');
-      const refreshToken = localStorage.getItem('refresh_token');
 
       const response = await fetch(`${apiUrl}/playlist`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
-          'Authorization': `Bearer ${accessToken} ${refreshToken}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -80,13 +81,10 @@
           is_public: isPlaylistPublic,
         })
       });
-      const { playlist_id, access_token } = await response.json();
-
-      localStorage.setItem('access_token', access_token);
+      const { playlist_id } = await response.json();
 
       playlistID = playlist_id;
 
-      loader.style.display = 'none';
       playlistUpdate.style.display = 'block';
     } catch {
       errorBlock.style.display = 'block';
@@ -107,13 +105,7 @@
       window.history.replaceState({}, '', window.location.pathname);
     }
 
-    const accessToken = localStorage.getItem('access_token');
-
-    if (accessToken && accessToken !== 'undefined') {
-      playlistCreatingForm.style.display = 'flex';
-    } else {
-      loginBlock.style.display = 'block';
-    }
+    loginBlock.style.display = 'block';
   };
 
   document.addEventListener("DOMContentLoaded", initializeApp)
