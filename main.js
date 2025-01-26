@@ -105,7 +105,11 @@
       window.history.replaceState({}, '', window.location.pathname);
     }
 
-    loginBlock.style.display = 'block';
+    if (document.cookie.includes('access_token=')) {
+      playlistCreatingForm.style.display = 'flex';
+    } else {
+      loginBlock.style.display = 'block';
+    }
   };
 
   document.addEventListener("DOMContentLoaded", initializeApp)
