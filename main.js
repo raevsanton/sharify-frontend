@@ -93,6 +93,29 @@
     }
   }
 
+  const validateToken = async () => {
+    loader.style.display = 'block';
+
+    try {
+      const response = await fetch(`${apiUrl}/auth`, {
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.status === 200) {
+        playlistCreatingForm.style.display = 'flex';
+      } else {
+        loginBlock.style.display = 'block';
+      }
+    } catch {
+      errorBlock.style.display = 'block';
+    } finally {
+      loader.style.display = 'none';
+    }
+  };
+
   const initializeApp = async () => {
     loginButton.addEventListener('click', handleLogin);
     createPlaylist.addEventListener('click', handleCreatePlaylist);
@@ -105,11 +128,7 @@
       window.history.replaceState({}, '', window.location.pathname);
     }
 
-    if (document.cookie.includes('access_token=')) {
-      playlistCreatingForm.style.display = 'flex';
-    } else {
-      loginBlock.style.display = 'block';
-    }
+    await validateToken()
   };
 
   document.addEventListener("DOMContentLoaded", initializeApp)
