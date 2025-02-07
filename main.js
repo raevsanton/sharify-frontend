@@ -128,7 +128,7 @@
       window.history.replaceState({}, '', window.location.pathname);
     }
 
-    await validateToken()
+    await validateToken();
   };
 
   document.addEventListener("DOMContentLoaded", initializeApp)
