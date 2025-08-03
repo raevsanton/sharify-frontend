@@ -1,62 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script type="module" src="/main.ts"></script>
+    <script type="module" src="./src/main.ts"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <title>Sharify</title>
   </head>
   <body>
-    <main>
-      <div class="content">
+    <div class="content">
+      <header>
         <img id="logo" src="assets/img/logo.svg" />
         <h1>Sharify</h1>
         <p>Allows to create playlist with your liked tracks in the Spotify</p>
-        <div id="loginBlock">
-          <button id="loginButton">Login</button>
-          <p class="text_secondary">by Spotify</p>
-        </div>
-
-        <div id="playlistCreatingForm">
-          <h2>Playlist data</h2>
-          <input type="text" placeholder="Name" id="playlistName" />
-          <input
-            type="text"
-            placeholder="Description"
-            id="playlistDescription"
-          />
-          <div>
-            <input id="playlistPublic" type="checkbox" />
-            <label for="playlistPublic">Make public</label>
-          </div>
-          <button id="createPlaylist">Create</button>
-        </div>
-
-        <div id="playlistUpdate">
-          <h2>Successfully</h2>
-          <button id="openPlaylistButton">
-            Open<img id="openIcon" src="assets/img/open.svg" />
-          </button>
-        </div>
-
-        <div id="loader">
-          <div class="bounce1"></div>
-          <div class="bounce2"></div>
-          <div class="bounce3"></div>
-        </div>
-
-        <div id="errorBlock">
-          <h2>Something wrong</h2>
-          <button
-            id="tryAgainButton"
-            class="secondary"
-            onclick="location.reload()"
-          >
-            Try again
-          </button>
-        </div>
-      </div>
-    </main>
+      </header>
+      <main></main>
+    </div>
   </body>
 </html>

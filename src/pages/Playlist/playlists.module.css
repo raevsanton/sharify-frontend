@@ -1,0 +1,12 @@
+.playlists {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    margin-bottom: 20px;
+  }
+}
+
+.playlistName {
+  margin-top: 40px;
+}
